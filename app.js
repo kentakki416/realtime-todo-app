@@ -8,6 +8,13 @@ let todos = [
 const app = express()
 
 // Todoの一覧取得
-app.get('/api/todos', (req, res) => res.json(todos))
+app.get('/api/todos', (req, res) => {
+  if (!req.query.completed) {
+    return res.json(todos)
+  }
+  // completedクエリパラメータを指定された場合はToDoをフィルタリング
+  const completed = req.query.completed === 'true'
+  res.json(todos.filter(todo => todo.completed === completed))
+})
 
 app.listen(3000)
