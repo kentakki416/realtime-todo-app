@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "file-system": "node app",
+    "sqlite": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
