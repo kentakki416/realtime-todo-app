@@ -28,6 +28,7 @@ dbRun(`CREATE TABLE IF NOT EXISTS todo (
 })
 
 
+// データベースのデータをToDoオブジェクトに変換する
 function rowToTodo(row) {
     return {...row, completed: !!row.completed }
 }
@@ -50,7 +51,7 @@ exports.update = (id, update) => {
     const values = []
     for (const column of ['title', 'completed']) {
         if (column in update) {
-            setColumns.push(`${column} = /`)
+            setColumns.push(`${column} = ?`)
             values.push(update[column])
         }
     }
